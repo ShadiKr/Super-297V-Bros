@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public int jumpCount;
     public float fallMultiplier = 0.3f;
     public float microJumpMultiplier = 0.1f;
+    public Animator characterAnimator;
 
     //Private Variables
     Rigidbody2D rb2d;
@@ -24,8 +25,9 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        characterAnimator = GetComponent<Animator>();
         jumpCount = maxJumps;
-        rb2d = gameObject.GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
         originalDirection = transform.localScale.x;
         invoriginalDirection = -1f * transform.localScale.x;
     }
@@ -34,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         xInput = Input.GetAxis("Horizontal");
-
+        characterAnimator.SetFloat("Speed", Mathf.Abs(xInput));
         if (xInput > 0)
         {
             transform.localScale = new Vector2(originalDirection, originalDirection);
