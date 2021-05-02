@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public enum CollectableType
 {
     POINTS,
@@ -10,6 +11,7 @@ public enum CollectableType
 
 public class Collectable : MonoBehaviour
 {
+
     public CollectableType type;
     // Start is called before the first frame update
     void Start()
