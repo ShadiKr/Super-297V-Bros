@@ -31,7 +31,7 @@ public class Collectable : MonoBehaviour
         {
             if (type == CollectableType.POINTS)
             {
-                collision.GetComponent<PlayerManager>().CoinsCollected++;
+                collision.GetComponent<PlayerManager>().PointsCollected++;
             }
             else
             {

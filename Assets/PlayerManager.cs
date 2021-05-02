@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public enum Powers
 {
@@ -10,16 +11,21 @@ public enum Powers
 }
 public class PlayerManager : MonoBehaviour
 {
-    public Text HP,Coins;
-    public GameObject FrogUI;
-
     public Powers currentPower;
-    public int CoinsCollected = 0;
+    public int PointsCollected = 0;
     public float health = 100f;
+
+    public TMP_Text HP, Points;
+    public Slider frogBar;
+    public float frogTime = 20;
+
+    Animator characterAnimator;
     // Start is called before the first frame update
     void Start()
     {
-        
+        frogBar.value = 0;
+        frogBar.maxValue = frogTime;
+        characterAnimator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,15 +41,19 @@ public class PlayerManager : MonoBehaviour
             health = 0;
         }
         HP.text = health.ToString();
-        Coins.text = CoinsCollected.ToString();
+        Points.text = PointsCollected.ToString();
 
-        if(currentPower == Powers.SHOOT)
+        if (currentPower == Powers.SHOOT)
         {
-            FrogUI.SetActive(true);
-        }
-        else
-        {
-            FrogUI.SetActive(false);
+            if (frogBar.value > 0)
+            {
+                frogBar.value -= Time.deltaTime;
+            }
+            else
+            {
+                characterAnimator.SetTrigger("Revert");
+                currentPower = Powers.NONE;
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ public class PowerUp : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerManager>().currentPower = Powers.SHOOT;
+            collision.GetComponent<PlayerManager>().frogBar.value = collision.GetComponent<PlayerManager>().frogTime;
             collision.GetComponent<PlayerMovement>().characterAnimator.SetTrigger("PowerUp");
             GetComponent<AudioSource>().Play();
             GetComponent<BoxCollider2D>().enabled = false;
