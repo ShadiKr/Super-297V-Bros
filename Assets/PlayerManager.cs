@@ -55,5 +55,10 @@ public class PlayerManager : MonoBehaviour
                 currentPower = Powers.NONE;
             }
         }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            characterAnimator.SetTrigger("Shoot");
+        }
     }
 }
