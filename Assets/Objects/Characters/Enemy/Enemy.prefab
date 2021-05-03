@@ -152,7 +152,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!66 &9058429488714092018
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -172,6 +172,16 @@ CompositeCollider2D:
   m_EdgeRadius: 0
   m_ColliderPaths:
   - m_Collider: {fileID: 0}
+    m_ColliderPaths:
+    - - X: 1862680
+        Y: -4695339
+      - X: 1862680
+        Y: 2524666
+      - X: -1862973
+        Y: 2524373
+      - X: -1862680
+        Y: -4695339
+  - m_Collider: {fileID: 485292811184657359}
     m_ColliderPaths:
     - - X: 1862680
         Y: -4695339

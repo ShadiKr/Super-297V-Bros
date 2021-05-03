@@ -481,6 +481,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPositions: []
+  waitTime: 5
+  rateOfSpawn: 1
+  startTime: 0
+  Enemy: {fileID: 7428795825541962832, guid: 54e7581a53f380343840da3f5c30875a, type: 3}
 --- !u!1001 &686808145
 PrefabInstance:
   m_ObjectHideFlags: 0
