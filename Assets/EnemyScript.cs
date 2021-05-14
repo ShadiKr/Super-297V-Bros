@@ -19,11 +19,13 @@ public class EnemyScript : Attackable
     public meanieState currentState;
     public float lineOfSight = 15;
     public float speed = 42;
+    public Animator enemyAnimator;
     // Start is called before the first frame update
 
 
     void Start()
     {
+        enemyAnimator = GetComponent<Animator>();
         currentState = meanieState.idling;
         body = GetComponent<Rigidbody2D>();
         deathEffect = GetComponent<ParticleSystem>();
@@ -40,13 +42,16 @@ public class EnemyScript : Attackable
         switch (currentState)
         {
             case meanieState.idling:
+                enemyAnimator.SetBool("Chase", false);
                 Idle();
                 break;
 
             case meanieState.chasing:
+                enemyAnimator.SetBool("Chase", true);
                 if (!airBound)
                 {
                     Chase();
+                    
                 }
                 break;
         }

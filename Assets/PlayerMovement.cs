@@ -66,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (jumpPressed && 0 < jumpCount)
             {
+                characterAnimator.SetBool("Jump", true);
+
                 rb2d.velocity = Vector2.zero;
                 rb2d.angularVelocity = 0f;
                 rb2d.AddForce(new Vector2(0.0f, jumpForce));
