@@ -172,13 +172,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentPower: 0
-  CoinsCollected: 0
+  PointsCollected: 0
   health: 100
   HP: {fileID: 0}
-  Coins: {fileID: 0}
-  FrogUI: {fileID: 0}
+  Points: {fileID: 0}
   frogBar: {fileID: 0}
   frogTime: 10
+  spit: {fileID: 8703434882251880047, guid: fd9a45aa640170a4a8ac6286db3be890, type: 3}
 --- !u!114 &4313294279785887815
 MonoBehaviour:
   m_ObjectHideFlags: 0

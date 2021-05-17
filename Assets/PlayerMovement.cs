@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float fallMultiplier = 0.3f;
     public float microJumpMultiplier = 0.1f;
     public Animator characterAnimator;
+    public bool inHitstun = false;
 
     //Private Variables
     Rigidbody2D rb2d;
@@ -92,6 +93,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb2d.velocity = new Vector2(xInput * speed, rb2d.velocity.y);
+        if (!inHitstun)
+        {
+            rb2d.velocity = new Vector2(xInput * speed, rb2d.velocity.y);
+        }
     }
 }

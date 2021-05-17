@@ -13,11 +13,10 @@ GameObject:
   - component: {fileID: 6751800921597251125}
   - component: {fileID: 485292811184657359}
   - component: {fileID: 5978577245088093208}
-  - component: {fileID: 9058429488714092018}
   - component: {fileID: 5346634903613167639}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,11 +114,11 @@ BoxCollider2D:
   m_GameObject: {fileID: 7428795825541962832}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: e646849f9a017104db2e69733abf99b2, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 1
-  m_Offset: {x: 0, y: -0.10853362}
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.35073292, y: -0.10853362}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -130,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.37259477, y: 0.7220006}
+  m_Size: {x: 1.0740607, y: 0.7220006}
   m_EdgeRadius: 0
 --- !u!50 &5978577245088093208
 Rigidbody2D:
@@ -153,52 +152,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!66 &9058429488714092018
-CompositeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7428795825541962832}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: e646849f9a017104db2e69733abf99b2, type: 2}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
-  m_GenerationType: 0
-  m_EdgeRadius: 0
-  m_ColliderPaths:
-  - m_Collider: {fileID: 0}
-    m_ColliderPaths:
-    - - X: 1862680
-        Y: -4695339
-      - X: 1862680
-        Y: 2524666
-      - X: -1862973
-        Y: 2524373
-      - X: -1862680
-        Y: -4695339
-  - m_Collider: {fileID: 485292811184657359}
-    m_ColliderPaths:
-    - - X: 1862680
-        Y: -4695339
-      - X: 1862680
-        Y: 2524666
-      - X: -1862973
-        Y: 2524373
-      - X: -1862680
-        Y: -4695339
-  m_CompositePaths:
-    m_Paths:
-    - - {x: 0.1862387, y: -0.46953392}
-      - {x: 0.1862387, y: 0.2524666}
-      - {x: -0.1862973, y: 0.252408}
-      - {x: -0.1862387, y: -0.46953392}
-  m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
 --- !u!114 &5346634903613167639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,5 +168,6 @@ MonoBehaviour:
   HP: 2
   airBound: 0
   currentState: 0
-  lineOfSight: 5
+  lineOfSight: 4
   speed: 42
+  enemyAnimator: {fileID: 0}

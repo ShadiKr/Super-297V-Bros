@@ -21,6 +21,16 @@ public class GroundCheck : MonoBehaviour
         if (collision.tag == "Ground")
         {
             GetComponentInParent<PlayerMovement>().jumpCount = GetComponentInParent<PlayerMovement>().maxJumps;
+            GetComponentInParent<Animator>().SetBool("Jump", false);
+            GetComponentInParent<PlayerMovement>().inHitstun = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Ground")
+        {
+            GetComponentInParent<Animator>().SetBool("Jump", true);
         }
     }
 }

@@ -20,6 +20,7 @@ public class EnemyScript : Attackable
     public float lineOfSight = 15;
     public float speed = 42;
     public Animator enemyAnimator;
+    private bool damaged;
     // Start is called before the first frame update
 
 
@@ -43,16 +44,14 @@ public class EnemyScript : Attackable
         {
             case meanieState.idling:
                 enemyAnimator.SetBool("Chase", false);
+                body.velocity = new Vector2(0, body.velocity.y);
+                body.angularVelocity = 0;
                 Idle();
                 break;
 
             case meanieState.chasing:
                 enemyAnimator.SetBool("Chase", true);
-                if (!airBound)
-                {
-                    Chase();
-                    
-                }
+                Chase();
                 break;
         }
         if (HP <= 0)
@@ -89,6 +88,10 @@ public class EnemyScript : Attackable
         {
             transform.localScale = new Vector2(1f, transform.localScale.y);
         }
+        if (Vector3.Distance(transform.position, Player.transform.position) > lineOfSight)
+        {
+            currentState = meanieState.idling;
+        }
     }
 
     void OnDrawGizmosSelected()
@@ -96,5 +99,24 @@ public class EnemyScript : Attackable
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, lineOfSight);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "Player" && !damaged)
+        {
+            collision.collider.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            collision.collider.GetComponent<Rigidbody2D>().angularVelocity = 0;
+            collision.collider.GetComponent<Rigidbody2D>().AddForce(new Vector2(transform.localScale.x * 400,800));
+            collision.collider.GetComponent<PlayerManager>().health -= 12;
+            StartCoroutine(damageCooldown());
+        }
+    }
+
+    IEnumerator damageCooldown()
+    {
+        damaged = true;
+        yield return new WaitForSeconds(0.2f);
+        damaged = false;
     }
 }
