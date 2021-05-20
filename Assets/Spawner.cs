@@ -14,7 +14,8 @@ public class Spawner : MonoBehaviour
     private bool didSpawn = false;
     private bool startSpawning = false;
     private bool initialSpawn;
-    // Start is called before the first frame update
+    
+    //Grab a list of possible spawnpoints and start spawning (with a delay)
     void Start()
     {
         foreach (Transform spawnPoint in gameObject.GetComponentInChildren<Transform>())
@@ -24,6 +25,7 @@ public class Spawner : MonoBehaviour
         StartCoroutine(startSpawnObject(startTime));
     }
 
+    //Spawn every set amount of time (unless it is the first time spawning)
     void FixedUpdate()
     {
         if (startSpawning)
@@ -46,6 +48,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    //Spawn an object randomly by rate of spawn amount randomly throughout the map with the given points
     void SpawnRandom()
     {
         for (int i = 0; i < rateOfSpawn; i++)
@@ -55,6 +58,7 @@ public class Spawner : MonoBehaviour
         }
     }
 
+    //Activate the spawner after waiting
     IEnumerator SpawnObject(float wait)
     {
         didSpawn = true;
@@ -63,6 +67,7 @@ public class Spawner : MonoBehaviour
         didSpawn = false;
     }
 
+    //Initial spawn
     IEnumerator startSpawnObject(float start)
     {
         startSpawning = false;

@@ -39,6 +39,7 @@ public class PlayerManager : MonoBehaviour
         else if (health <= 0)
         {
             health = 0;
+            GameObject.Find("GameOver").GetComponent<GameOverScreen>().Setup(PointsCollected);
         }
 
         //Convert points to strings for UI elements

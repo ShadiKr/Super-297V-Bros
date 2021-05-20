@@ -13,30 +13,23 @@ public class Collectable : MonoBehaviour
 {
 
     public CollectableType type;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        //Do stuff when a player collides
         if (collision.tag == "Player")
         {
+            //Increase points if the collectable is a coin type
             if (type == CollectableType.POINTS)
             {
                 collision.GetComponent<PlayerManager>().PointsCollected++;
             }
+            //Increase health if the collectable is a health type
             else
             {
                 collision.GetComponent<PlayerManager>().health += 20f;
             }
+            //Play audio effect then delete the object (while disabling the main components)
             GetComponent<AudioSource>().Play();
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<SpriteRenderer>().enabled = false;

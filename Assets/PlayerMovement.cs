@@ -36,8 +36,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Take input and convert it into fsm values
         xInput = Input.GetAxis("Horizontal");
         characterAnimator.SetFloat("Speed", Mathf.Abs(xInput));
+        //Flip the character towards the direction they're moving or return them to the direction they were supposed to be in when they are not moving
         if (xInput > 0)
         {
             transform.localScale = new Vector2(originalDirection, originalDirection);
@@ -62,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-
+        //Jump when the spacebar is pressed (allow for multiple jumps) and update fsm
         if (Input.GetAxisRaw("Jump") == 1)
         {
             if (jumpPressed && 0 < jumpCount)
@@ -80,17 +82,19 @@ public class PlayerMovement : MonoBehaviour
         {
             jumpPressed = true;
         }
+
+        //Make jumping smoother
         if (rb2d.velocity.y < 0)
         {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
         }
-
-        else if (rb2d.velocity.y > 0 /* && !jump*/)
+        else if (rb2d.velocity.y > 0)
         {
             rb2d.velocity += Vector2.up * Physics2D.gravity.y * (microJumpMultiplier - 1) * Time.deltaTime;
         }
     }
 
+    //If character is hurt, don't do anything to prevent weird glitches from happening
     private void FixedUpdate()
     {
         if (!inHitstun)

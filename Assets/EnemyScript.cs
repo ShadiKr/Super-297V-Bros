@@ -7,9 +7,8 @@ public enum meanieState
 {
     idling,
     chasing,
-    attacking,
 }
-public class EnemyScript : Attackable
+public class EnemyScript : MonoBehaviour
 {
     public bool airBound;
     private GameObject Player;
@@ -33,13 +32,9 @@ public class EnemyScript : Attackable
         Player = GameObject.Find("Pinky");
     }
 
-    // Update is called once per frame
+    // Update the fsm
     private void Update()
     {
-        if (isHit)
-        {
-            SceneManager.LoadScene("Turn-Based Fight");
-        }
         switch (currentState)
         {
             case meanieState.idling:
@@ -54,18 +49,9 @@ public class EnemyScript : Attackable
                 Chase();
                 break;
         }
-        if (HP <= 0)
-        {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            if (!counting)
-            {
-                counting = true;
-                deathEffect.Play();
-            }
-            Kill(false);
-        }
     }
 
+    //Idle state (when opponent is close go to a chasing state)
     public void Idle()
     {
         if (Vector3.Distance(transform.position, Player.transform.position) < lineOfSight)
@@ -74,6 +60,7 @@ public class EnemyScript : Attackable
         }
     }
 
+    //Chase state (when opponent is far, stop chasing)
     public void Chase()
     {
         Vector3 moveTowards = Player.transform.position - transform.position;
@@ -101,6 +88,7 @@ public class EnemyScript : Attackable
         Gizmos.DrawWireSphere(transform.position, lineOfSight);
     }
 
+    //Damage and push player on collision
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.tag == "Player" && !damaged)
@@ -113,6 +101,7 @@ public class EnemyScript : Attackable
         }
     }
 
+    //Deal damage once instead of continuously
     IEnumerator damageCooldown()
     {
         damaged = true;
