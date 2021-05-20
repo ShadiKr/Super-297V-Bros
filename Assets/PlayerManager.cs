@@ -11,7 +11,6 @@ public enum Powers
 }
 public class PlayerManager : MonoBehaviour
 {
-    public GameOverScreen GameOverScreen;
     public Powers currentPower;
     public int PointsCollected = 0;
     public float health = 100f;
@@ -40,7 +39,6 @@ public class PlayerManager : MonoBehaviour
         else if (health <= 0)
         {
             health = 0;
-
         }
 
         //Convert points to strings for UI elements
